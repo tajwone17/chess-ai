@@ -14,6 +14,17 @@ let chessAI;
  */
 function initializeGame() {
   try {
+    // Initialize sound system first
+    if (typeof SoundManager !== "undefined") {
+      SoundManager.init();
+      console.log("Sound system status:", {
+        enabled: SoundManager.enabled,
+        initialized: SoundManager.initialized,
+      });
+    } else {
+      console.warn("SoundManager not available");
+    }
+
     // Initialize core modules
     gameLogic = new GameLogic();
     chessAI = new ChessAI();
@@ -24,6 +35,13 @@ function initializeGame() {
     boardInteractions.initializeBoard();
 
     console.log("Chess game initialized successfully!");
+
+    // Test sound system after everything is loaded
+    setTimeout(() => {
+      if (typeof SoundManager !== "undefined") {
+        SoundManager.testSounds();
+      }
+    }, 1000);
   } catch (error) {
     console.error("Error initializing chess game:", error);
 

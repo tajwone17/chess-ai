@@ -48,19 +48,19 @@
             integrity="sha384-6khuMg9gaYr5AxOqhkVIODVIvm9ynTT5J4V1cfthmT+emCG6yVmEZsRHdxlotUnm" 
             crossorigin="anonymous">
         </script>
-        
-        <!-- Custom JS Modules (order matters) -->
-        <!-- Howler.js for sound effects -->
+          <!-- Custom JS Modules (order matters) -->        <!-- Howler.js for sound effects (load early) -->
         <script src="https://cdnjs.cloudflare.com/ajax/libs/howler/2.2.3/howler.min.js"></script>
-        <script defer src="js/sounds.js"></script>
         
-        <!-- Game modules -->
+        <!-- Sound manager (load immediately after Howler) -->
+        <script src="js/sounds.js"></script>
+        
+        <!-- Game modules (load with defer for proper order) -->
         <script defer src="js/game-logic.js"></script>
         <script defer src="js/chess-ai.js"></script>
         <script defer src="js/ui-manager.js"></script>
         <script defer src="js/board-interactions.js"></script>
         
-        <!-- Main coordinator -->
+        <!-- Main coordinator (load last) -->
         <script defer src="js/main.js"></script>
     </head>
     <body>
@@ -74,6 +74,7 @@
                                     <div class="col-12 my-2">
                                         <button class="btn btn-primary btn-lg" id="startBtn">New Game</button>
                                     </div>
+                                  
                                 </div>
                             </div>
                             

@@ -32,7 +32,6 @@ class UIManager {
       `);
     }, 500);
   }
-
   /**
    * Initialize event listeners for UI controls
    */
@@ -44,6 +43,17 @@ class UIManager {
         return;
       }
       this.resetGame();
+    });
+
+    // Test Sound button
+    $("#testSoundBtn").on("click", () => {
+      console.log("Test sound button clicked");
+      if (typeof SoundManager !== "undefined") {
+        SoundManager.testSounds();
+        this.showInfo("Sound test played. Check console for details.");
+      } else {
+        this.showError("SoundManager not available");
+      }
     });
 
     // Undo button
@@ -158,12 +168,25 @@ class UIManager {
   updateStatus(message) {
     this.$status.html(message);
   }
-
   /**
    * Show warning message
    */
   showWarning(message) {
     this.updateStatus(`<span class="text-warning">${message}</span>`);
+  }
+
+  /**
+   * Show info message
+   */
+  showInfo(message) {
+    this.updateStatus(`<span class="text-info">${message}</span>`);
+  }
+
+  /**
+   * Show error message
+   */
+  showError(message) {
+    this.updateStatus(`<span class="text-danger">${message}</span>`);
   }
   /**
    * Update game status based on current game state
