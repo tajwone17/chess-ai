@@ -501,11 +501,12 @@ function reset() {
   );
 
   // Clear the board with a fade effect before resetting
-  $("#myBoard").fadeTo(300, 0.5, function () {    // Reset game state
+  $("#myBoard").fadeTo(300, 0.5, function () {
+    // Reset game state
     game.reset();
     globalSum = 0;
-    isAIThinking = false;  // Reset the AI thinking flag
-    $("#myBoard").removeClass("board-disabled");  // Remove any disabled styling
+    isAIThinking = false; // Reset the AI thinking flag
+    $("#myBoard").removeClass("board-disabled"); // Remove any disabled styling
     $board.find("." + squareClass).removeClass("highlight-white");
     $board.find("." + squareClass).removeClass("highlight-black");
 
@@ -541,7 +542,9 @@ function reset() {
 $("#startBtn").on("click", function () {
   // Prevent starting a new game when AI is thinking
   if (isAIThinking) {
-    $("#status").html('<span class="text-warning">Please wait for the AI to finish its move.</span>');
+    $("#status").html(
+      '<span class="text-warning">Please wait for the AI to finish its move.</span>'
+    );
     return;
   }
   reset();
@@ -563,7 +566,9 @@ function undo() {
 $("#undoBtn").on("click", function () {
   // Prevent undo operations when AI is thinking
   if (isAIThinking) {
-    $("#status").html('<span class="text-warning">Please wait for the AI to finish its move.</span>');
+    $("#status").html(
+      '<span class="text-warning">Please wait for the AI to finish its move.</span>'
+    );
     return;
   }
 
@@ -596,10 +601,12 @@ function redo() {
 $("#redoBtn").on("click", function () {
   // Prevent redo operations when AI is thinking
   if (isAIThinking) {
-    $("#status").html('<span class="text-warning">Please wait for the AI to finish its move.</span>');
+    $("#status").html(
+      '<span class="text-warning">Please wait for the AI to finish its move.</span>'
+    );
     return;
   }
-  
+
   if (undo_stack.length >= 2) {
     // Visual feedback
     $("#status").html("Redoing the last move...");
@@ -645,7 +652,9 @@ function onDragStart(source, piece) {
 
   // do not pick up pieces if AI is thinking
   if (isAIThinking) {
-    $("#status").html(`<span class="text-warning">Please wait for the AI to finish its move.</span>`);
+    $("#status").html(
+      `<span class="text-warning">Please wait for the AI to finish its move.</span>`
+    );
     return false;
   }
 
@@ -695,14 +704,15 @@ function onDrop(source, target) {
 
   $board
     .find(".square-" + squareToHighlight)
-    .addClass("highlight-" + colorToHighlight);  if (!checkStatus("black"));
+    .addClass("highlight-" + colorToHighlight);
+  if (!checkStatus("black"));
   {
     // Set the flag to indicate AI is thinking
     isAIThinking = true;
-    
+
     // Apply a visual indicator to the board to show it's disabled
     $("#myBoard").addClass("board-disabled");
-    
+
     // Show AI is thinking with a small delay to make the game feel more natural
     $("#status").html(
       `<i class="fas fa-cog fa-spin mr-2"></i> AI is thinking...`
@@ -711,10 +721,10 @@ function onDrop(source, target) {
     // Make the best move for black
     window.setTimeout(function () {
       makeBestMove("b");
-      
+
       // Reset the flag after AI has moved
       isAIThinking = false;
-      
+
       // Remove the visual indicator
       $("#myBoard").removeClass("board-disabled");
     }, 750); // Longer delay to show the AI "thinking"
@@ -724,7 +734,7 @@ function onDrop(source, target) {
 function onMouseoverSquare(square, piece) {
   // Don't show moves if the AI is thinking
   if (isAIThinking) return;
-  
+
   // get list of possible moves for this square
   var moves = game.moves({
     square: square,
