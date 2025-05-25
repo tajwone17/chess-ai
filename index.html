@@ -40,17 +40,27 @@
             crossorigin="anonymous"></script>
 
         <!-- Chess JS (slightly modified) -->
-        <script defer src="js/chess.js"></script>
-        </script>
+        <script defer src="js/chess.js"></script>        </script>
 
         <!-- Bootstrap JS --> 
         <script defer
             src="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.bundle.min.js" 
             integrity="sha384-6khuMg9gaYr5AxOqhkVIODVIvm9ynTT5J4V1cfthmT+emCG6yVmEZsRHdxlotUnm" 
             crossorigin="anonymous">
-        </script>        <!-- Custom JS -->        <!-- Howler.js for sound effects -->
+        </script>
+        
+        <!-- Custom JS Modules (order matters) -->
+        <!-- Howler.js for sound effects -->
         <script src="https://cdnjs.cloudflare.com/ajax/libs/howler/2.2.3/howler.min.js"></script>
         <script defer src="js/sounds.js"></script>
+        
+        <!-- Game modules -->
+        <script defer src="js/game-logic.js"></script>
+        <script defer src="js/chess-ai.js"></script>
+        <script defer src="js/ui-manager.js"></script>
+        <script defer src="js/board-interactions.js"></script>
+        
+        <!-- Main coordinator -->
         <script defer src="js/main.js"></script>
     </head>
     <body>
