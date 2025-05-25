@@ -82,14 +82,7 @@ class BoardInteractions {
         this.uiManager.updateGameStatus("white");
       }, 1500);
       return "snapback";
-    }
-
-    // Play sound effect for the move
-    if (typeof SoundManager !== "undefined") {
-      SoundManager.playMoveSound(move);
-    }
-
-    // Update evaluation
+    } // Update evaluation
     this.gameLogic.setGlobalSum(
       this.chessAI.evaluateBoard(
         this.gameLogic.getGame(),
@@ -166,16 +159,9 @@ class BoardInteractions {
             currentSum,
             "b"
           )
-        );
-
-        // Make the move
+        ); // Make the move
         this.gameLogic.getGame().move(bestMove);
         window.board.position(this.gameLogic.getFen());
-
-        // Play sound effect
-        if (typeof SoundManager !== "undefined") {
-          SoundManager.playMoveSound(bestMove);
-        }
 
         // Highlight AI move
         this.uiManager.highlightMove(bestMove, "black");

@@ -45,17 +45,6 @@ class UIManager {
       this.resetGame();
     });
 
-    // Test Sound button
-    $("#testSoundBtn").on("click", () => {
-      console.log("Test sound button clicked");
-      if (typeof SoundManager !== "undefined") {
-        SoundManager.testSounds();
-        this.showInfo("Sound test played. Check console for details.");
-      } else {
-        this.showError("SoundManager not available");
-      }
-    });
-
     // Undo button
     $("#undoBtn").on("click", () => {
       if (this.gameLogic.isAICurrentlyThinking()) {
@@ -141,16 +130,9 @@ class UIManager {
       // Reset game state
       this.gameLogic.reset();
       this.$board.removeClass("board-disabled");
-      this.clearHighlights();
-
-      // Update board position
+      this.clearHighlights(); // Update board position
       if (window.board) {
         window.board.position(this.gameLogic.getFen());
-      }
-
-      // Play new game sound
-      if (typeof SoundManager !== "undefined") {
-        SoundManager.playSound("newGame");
       }
 
       // Fade board back in
@@ -212,16 +194,10 @@ class UIManager {
         return false;
     }
   }
-
   /**
    * Show game over message with animations
    */
   showGameOver(status) {
-    // Play game over sound
-    if (typeof SoundManager !== "undefined") {
-      SoundManager.playSound("gameOver");
-    }
-
     let message;
     if (status.winner === "white") {
       message = `<strong class="text-success">Checkmate!</strong> Congratulations, you have won the game!`;
@@ -231,16 +207,10 @@ class UIManager {
 
     this.showAnimatedGameOver(message);
   }
-
   /**
    * Show draw message
    */
   showDraw(status) {
-    // Play game over sound
-    if (typeof SoundManager !== "undefined") {
-      SoundManager.playSound("gameOver");
-    }
-
     let reason;
     switch (status.reason) {
       case "insufficient_material":
@@ -262,16 +232,10 @@ class UIManager {
     const message = `The game ends in a <strong>draw</strong> due to ${reason}.`;
     this.showAnimatedGameOver(message);
   }
-
   /**
    * Show check message
    */
   showCheck(status) {
-    // Play check sound
-    if (typeof SoundManager !== "undefined") {
-      SoundManager.playSound("check");
-    }
-
     if (status.player === "white") {
       this.updateStatus(
         `<strong class="text-danger">Check!</strong> Your king is under attack. Defend your king!`
