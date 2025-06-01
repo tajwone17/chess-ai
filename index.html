@@ -1,111 +1,28 @@
 <!DOCTYPE html>
-<html lang="en">    <head>
-        <title>Chess: Player vs AI</title>
-        <meta name="viewport" content="width=device-width, initial-scale=1.0">
-        <meta
-          name="description"           
-          content="A simple chess game where you play against AI.">
-
-        <!-- Bootstrap CSS -->
-        <link rel="stylesheet" 
-            href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css" 
-            integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" 
-            crossorigin="anonymous">
-
-        <!-- Custom CSS -->
-        <link rel="stylesheet" href="css/main.css">
-
-        <!-- Google Icons (Material Design) -->
-        <link rel="stylesheet" 
-            href="https://fonts.googleapis.com/icon?family=Material+Icons"
-            crossorigin="anonymous">
-
-        <!-- Font Awesome -->
-        <script src="https://kit.fontawesome.com/5b14db5f0b.js" crossorigin="anonymous"></script>
-
-        <!-- jQuery --> 
-        <script
-            src="https://code.jquery.com/jquery-3.5.1.js"
-            integrity="sha256-QWo7LDvxbWT2tbbQ97B53yJnYU3WhH/C8ycbRAkjPDc="
-            crossorigin="anonymous">
-        </script>
-
-        <!-- Chessboard JS -->
-        <link rel="stylesheet"
-            href="https://unpkg.com/@chrisoakman/chessboardjs@1.0.0/dist/chessboard-1.0.0.min.css"
-            integrity="sha384-q94+BZtLrkL1/ohfjR8c6L+A6qzNH9R2hBLwyoAfu3i/WCvQjzL2RQJ3uNHDISdU"
-            crossorigin="anonymous">
-        <script defer src="https://unpkg.com/@chrisoakman/chessboardjs@1.0.0/dist/chessboard-1.0.0.min.js"
-            integrity="sha384-8Vi8VHwn3vjQ9eUHUxex3JSN/NFqUg3QbPyX8kWyb93+8AC/pPWTzj+nHtbC5bxD"
-            crossorigin="anonymous"></script>
-
-        <!-- Chess JS (slightly modified) -->
-        <script defer src="js/chess.js"></script>        </script>
-
-        <!-- Bootstrap JS --> 
-        <script defer
-            src="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.bundle.min.js" 
-            integrity="sha384-6khuMg9gaYr5AxOqhkVIODVIvm9ynTT5J4V1cfthmT+emCG6yVmEZsRHdxlotUnm" 
-            crossorigin="anonymous">
-        </script>        <!-- Custom JS Modules (order matters) -->
-        
-        <!-- Game modules (load with defer for proper order) -->
-        <script defer src="js/game-logic.js"></script>
-        <script defer src="js/chess-ai.js"></script>
-        <script defer src="js/ui-manager.js"></script>
-        <script defer src="js/board-interactions.js"></script>
-        
-        <!-- Main coordinator (load last) -->
-        <script defer src="js/main.js"></script>
-    </head>
-    <body>
-        <main>
-            <div class="container my-3">
-                <div class="row align-items-center">                    <div class="col-md-6">                        <h1 class="text-align-center">Chess Game: Player vs AI</h1>
-                        <div class="mb-4">
-                            <p class="intro-text text-center">Play chess against the AI. You play as white, AI plays as black.</p>
-                        </div>                            <div class="game-controls mb-4">
-                                <div class="row text-align-center">
-                                    <div class="col-12 my-2">
-                                        <button class="btn btn-primary btn-lg" id="startBtn">New Game</button>
-                                    </div>
-                                </div>
-                            </div>
-                            
-                            <!-- Game status is shown below -->                        <div class="game-status-container my-4">
-                            <div class="card shadow-sm">
-                                <div class="card-header bg-light">
-                                    <h3 class="mb-0">Game Status</h3>
-                                </div>
-                                <div class="card-body">
-                                    <p class="status-message" id="status">Game ready! You play as white. Make your move.</p>
-                                </div>
-                            </div>
-                        </div>
-                    </div>                    <div class="col-md-6">
-                        <div id="myBoard" class="mb-3 chess-board-container shadow"></div>
-                        
-                        <div class="row my-3 text-align-center">
-                            <div class="col-md-6 my-2">
-                                <button class="btn btn-outline-dark btn-block" id="undoBtn">
-                                    <i class="fas fa-undo mr-2"></i>Undo Move
-                                </button>
-                            </div>
-                            <div class="col-md-6 my-2">
-                                <button class="btn btn-outline-dark btn-block" id="redoBtn">
-                                    <i class="fas fa-redo mr-2"></i>Redo Move
-                                </button>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>        </main>
-        <footer class="py-3 mt-5 bg-light">
-            <div class="container">
-                <p class="text-align-center mb-0"> 
-                    &copy; 2025 Chess Game
-                </p>
-            </div>
-        </footer>
-    </body>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>AI Chess Game</title>
+    <link rel="stylesheet" href="styles.css" />
+  </head>
+  <body>
+    <div class="container">
+      <h1>AI Chess Game</h1>
+      <div class="game-info">
+        <div id="status">Your turn (White)</div>
+        <button id="restart-btn">Restart Game</button>
+      </div>
+      <div id="board" class="chess-board"></div>
+      <div class="settings">
+        <label for="difficulty">AI Difficulty (Search Depth):</label>
+        <select id="difficulty">
+          <option value="1">Easy (Depth 1)</option>
+          <option value="2" selected>Medium (Depth 2)</option>
+          <option value="3">Hard (Depth 3)</option>
+        </select>
+      </div>
+    </div>
+    <script src="script.js"></script>
+  </body>
 </html>
